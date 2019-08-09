@@ -1,0 +1,51 @@
+https://juejin.im/post/5b1ffff96fb9a01e345ba704 async/await
+	语法糖：一种为了便于程序员遍程、理解而使用的方式，实际没有对代码的功能进行任何增改，例如 max(1,2), a,b = 2,3 a,b = b,a 都是python的语法糖
+https://juejin.im/post/5b7d0f4951882528676a2151 线程、进程、协程
+	线程 threading 进程 multiprocessing 协程 asyncio
+	线程池 开销计算公式 线程池可以省去频繁的线程创建销毁所消耗的系统资源
+	协程 定义一个消息队列 将每一个协成丢进去执行
+https://juejin.im/post/5d341ea36fb9a07ed6580f10 web 概念
+	WSGI web server 和web application 之间实现的接口交互规范
+	web server 服务器 uwsgi、Gunicorn
+	web application 应用程序app 用于处理用户提交的请求
+	web框架 flask django tornado
+	werkzeug 实现WSGI规范的函数库 可以用其来创建web app
+	flask是对werkzeug进行的封装
+
+
+
+1.优化线上server
+	1.熟悉协成、线程 2.熟悉Tornado内容、机制等等 3.运用Tornado的特性编写代码
+		https://www.cnblogs.com/zhangxinqi/p/8337207.html
+		协成：在不同子程序间跳动，适合高并发
+		python原生 运用yield和send配合
+		gevent：第三方库，实现协成，遇到阻塞就切换到其他子程序，所有程序都阻塞时阻塞
+		https://docs.python.org/zh-cn/3/library/asyncio-task.html
+		https://www.cnblogs.com/shenh/p/9090586.html
+		asyncio+aiohttp
+		利用asyncio+aiohttp编写异步爬虫，编写过程中所有的函数必须都是异步的，并交给loop进行监视
+		https://segmentfault.com/a/1190000016610210
+		Tornado异步
+		https://my.oschina.net/yangyanxing/blog/3001436
+		阻塞、非阻塞、同步、异步、协成、Tornado
+		经过测试Tornado的并发异步是在2次请求中体现出来的，在同一次的请求中由于没有监听，
+		只能是同步的，但是当请求量大时 反应速度还是很可观的，Tornado可以利用线程池或者协成的写法来实现高并发
+
+2.了解Docker
+	1.学习Docker的使用 并自己部署一个项目
+		http://dockone.io/article/6051 Docker
+		什么是虚拟机：虚拟一套硬件设施并在上面运行操作系统在跑程序
+		什么是Docker容器：虚拟一套操作系统，本质是一个进程但是独立于宿主并跑程序
+		容器镜像：包含一套程序运行的全部（代码、环境、工具、系统库和设置）
+		Docker容器：优点（轻便、标准、安全）
+		Docker是一个容器平台
+		Docker包含镜像：一个文件系统（linuxroot文件系统）
+				容器：镜像运行的实体 （进程）
+				仓库:集中存镜像文件的地方
+		build：建立镜像
+		ship：运行镜像
+		run：运行镜像
+		运行的镜像是一个容器
+3.如何在linux使用 pythons
+	alias pythons='/data/home/xxx/tools/anaconda3/bin/python3' 这种方法是临时的，在~/.bashrc中可以实现永久
+
